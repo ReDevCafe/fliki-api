@@ -13,6 +13,11 @@ if (string.IsNullOrEmpty(aliasFile))
 }
 
 
+builder.Services.AddMemoryCache(options =>
+{
+    options.SizeLimit = 1024L * 1024L * 1024L * 2L; // 2 GB (For now it should be enough)
+});
+
 var typeAliasProvider = new TypeAliasProvider(aliasFile);
 builder.Services.AddControllers().AddNewtonsoftJson();
 

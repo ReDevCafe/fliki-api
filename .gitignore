@@ -5,3 +5,4 @@ Properties/
 .vs
 appsettings.Development.json
 appsettings.json
+GameData/

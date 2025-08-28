@@ -51,4 +51,16 @@ public class MemoryRepository : IMemoryRepository
         }
         return false;
     }
+
+    public bool TryGetAll(string type, out IEnumerable<DataEntry>? entries)
+    {
+        if (_entriesType.TryGetValue(type, out var dict))
+        {
+            entries = dict.Values;
+            return dict.Count > 0;
+        }
+
+        entries = Enumerable.Empty<DataEntry>();
+        return false;
+    }
 }
