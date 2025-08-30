@@ -58,6 +58,8 @@ public class ApiController : ControllerBase
         if (string.IsNullOrEmpty(type) || string.IsNullOrEmpty(id))
             return BadRequest("Type and Id cannot be empty");
 
+        type = type.ToLower();
+
         var cacheKey = KeyPrecisePrefix + type + ":" + id;
 
         if (_memoryCache.TryGetValue<SerializedPayload>(cacheKey, out var cached) && cached != null)
@@ -87,6 +89,8 @@ public class ApiController : ControllerBase
     {
         if (string.IsNullOrEmpty(type))
             return BadRequest("Type cannot be empty");
+
+        type = type.ToLower();
 
         var cacheKey = KeyTypePrefix + type;
 
