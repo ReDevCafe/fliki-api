@@ -217,13 +217,10 @@ public class ApiController : ControllerBase
             jsonWriter.WriteStartArray();
             foreach (var entry in entries)
             {
-                jsonWriter.WriteStartObject();
-                jsonWriter.WritePropertyName("definition");
                 if (entry.Raw is JToken token)
                     token.WriteTo(jsonWriter);
                 else
                     serializer.Serialize(jsonWriter, entry.Raw);
-                jsonWriter.WriteEndObject();
             }
             jsonWriter.WriteEndArray();
 
